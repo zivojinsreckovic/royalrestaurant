@@ -4554,14 +4554,21 @@ td:last-child {
 }
 
 .testimonials-slider__avatar {
-    background-color: var(--color-bg-neutral);
+    background-color: #000000;
     width           : var(--vspace-2);
     height          : var(--vspace-2);
-    padding         : var(--vspace-0_25);
+    padding         : 0;
     margin-bottom   : 0;
     margin-right    : var(--vspace-0_5);
     border-radius   : 100%;
     outline         : none;
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    color           : #ffffff;
+    font-size       : var(--text-lg);
+    font-weight     : 600;
+    flex-shrink     : 0;
 }
 
 .testimonials-slider__cite {
@@ -4985,5 +4992,168 @@ td:last-child {
     .footer-newsletter h5 {
         font-size  : var(--text-sm);
         line-height: var(--vspace-0_75);
+    }
+}
+
+
+/* ===================================================================
+ * ANIMATED COUNTERS SECTION
+ * =================================================================== */
+
+.s-counters {
+    padding: var(--vspace-5) 0;
+    background-color: var(--color-bg, #0a0a0a);
+}
+
+.s-counters__content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.s-counters__item {
+    text-align: center;
+    padding: var(--vspace-2) var(--vspace-1);
+}
+
+.counter-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.counter-item__number {
+    font-size: 6rem;
+    font-weight: 50;
+    line-height: 1;
+    color: var(--color-text-bold, #ffffff);
+    margin-bottom: var(--vspace-1);
+    font-family: var(--type-headings, "Playfair Display", serif);
+    letter-spacing: -0.02em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-stretch: ultra-condensed;
+}
+
+.counter-item__label {
+    font-size: var(--text-sm);
+    color: var(--color-text-light, #5f6362);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+}
+
+/* Responsive styles for counters */
+@media screen and (max-width: 1200px) {
+    .counter-item__number {
+        font-size: 5rem;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .s-counters {
+        padding: var(--vspace-4) 0;
+    }
+    
+    .counter-item__number {
+        font-size: 4.5rem;
+    }
+    
+    .s-counters__item {
+        padding: var(--vspace-1_5) var(--vspace-0_75);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .counter-item__number {
+        font-size: 3.5rem;
+    }
+    
+    .counter-item__label {
+        font-size: var(--text-xs);
+    }
+    
+    .s-counters__item {
+        padding: var(--vspace-1) var(--vspace-0_5);
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .counter-item__number {
+        font-size: 2.8rem;
+    }
+    
+    .s-counters__content {
+        gap: var(--vspace-1);
+    }
+}
+
+/* ===================================================================
+ * FLOATING CALL BUTTON
+ * =================================================================== */
+
+.floating-call-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #023103;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.floating-call-button:hover {
+    background-color: #45a049;
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.floating-call-button:active {
+    transform: scale(0.95);
+}
+
+.floating-call-button svg {
+    width: 28px;
+    height: 28px;
+    stroke: #ffffff;
+}
+
+/* Responsive styles for floating call button */
+@media screen and (max-width: 768px) {
+    .floating-call-button {
+        width: 56px;
+        height: 56px;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .floating-call-button svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .floating-call-button {
+        width: 50px;
+        height: 50px;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .floating-call-button svg {
+        width: 22px;
+        height: 22px;
     }
 }
