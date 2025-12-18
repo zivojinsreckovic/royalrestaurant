@@ -681,6 +681,59 @@
     }; // end ssSmoothScroll
 
 
+   /* animated counters
+    * ------------------------------------------------------ */
+    const ssAnimatedCounters = function() {
+
+        const counterElements = document.querySelectorAll('.counter-item__number');
+        if (!counterElements.length) return;
+
+        let hasAnimated = false;
+
+        const animateCounter = function(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000; // 2 seconds
+            const increment = target / (duration / 16); // 60fps
+            let current = 0;
+
+            const updateCounter = function() {
+                current += increment;
+                if (current < target) {
+                    element.textContent = Math.floor(current);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target;
+                }
+            };
+
+            updateCounter();
+        };
+
+        const checkVisibility = function() {
+            const countersSection = document.querySelector('.s-counters');
+            if (!countersSection) return;
+
+            const rect = countersSection.getBoundingClientRect();
+            const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+            if (isVisible && !hasAnimated) {
+                hasAnimated = true;
+                counterElements.forEach(function(element) {
+                    animateCounter(element);
+                });
+            }
+        };
+
+        // Check on scroll and on load
+        window.addEventListener('scroll', checkVisibility);
+        window.addEventListener('load', checkVisibility);
+        
+        // Initial check
+        checkVisibility();
+
+    }; // end ssAnimatedCounters
+
+
    /* Initialize
     * ------------------------------------------------------ */
     (function ssInit() {
@@ -695,6 +748,7 @@
         ssMailChimpForm();
         ssAlertBoxes();
         ssSmoothScroll();
+        ssAnimatedCounters();
 
     })();
 
