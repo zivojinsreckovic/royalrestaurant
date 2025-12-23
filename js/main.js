@@ -182,48 +182,6 @@
     } // end ssGLightbox
 
 
-   /* swiper
-    * ------------------------------------------------------ */ 
-    const ssSwiper = function() {           
-    
-        const testimonialSlider = function() {
-
-            const tSlider = document.querySelector('.testimonials-slider');            
-            if (!(tSlider)) return;
-
-            const slider = new Swiper(tSlider, {
-
-                slidesPerView: 1,
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-                breakpoints: {
-                    // when window width is > 400px
-                    401: {
-                        slidesPerView: 1,
-                        spaceBetween: 20
-                    },
-                    // when window width is > 800px
-                    801: {
-                        slidesPerView: 2,
-                        spaceBetween: 44
-                    },
-                    // when window width is > 1200px
-                    1201: {
-                        slidesPerView: 3,
-                        spaceBetween: 44
-                    }
-                }
-            });
-
-        }; // end testimonialSlider
-        
-        testimonialSlider();
-
-    }; // end ssSwiper
-
-
    /* tabs
     * ---------------------------------------------------- */ 
     const sstabs = function(nextTab = false) {
@@ -681,57 +639,165 @@
     }; // end ssSmoothScroll
 
 
-   /* animated counters
+   /* Reservation Form Date/Time Validation
     * ------------------------------------------------------ */
-    const ssAnimatedCounters = function() {
-
-        const counterElements = document.querySelectorAll('.counter-item__number');
-        if (!counterElements.length) return;
-
-        let hasAnimated = false;
-
-        const animateCounter = function(element) {
-            const target = parseInt(element.getAttribute('data-target'));
-            const duration = 2000; // 2 seconds
-            const increment = target / (duration / 16); // 60fps
-            let current = 0;
-
-            const updateCounter = function() {
-                current += increment;
-                if (current < target) {
-                    element.textContent = Math.floor(current);
-                    requestAnimationFrame(updateCounter);
-                } else {
-                    element.textContent = target;
-                }
-            };
-
-            updateCounter();
-        };
-
-        const checkVisibility = function() {
-            const countersSection = document.querySelector('.s-counters');
-            if (!countersSection) return;
-
-            const rect = countersSection.getBoundingClientRect();
-            const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-
-            if (isVisible && !hasAnimated) {
-                hasAnimated = true;
-                counterElements.forEach(function(element) {
-                    animateCounter(element);
-                });
-            }
-        };
-
-        // Check on scroll and on load
-        window.addEventListener('scroll', checkVisibility);
-        window.addEventListener('load', checkVisibility);
+    const ssReservationForm = function() {
         
-        // Initial check
-        checkVisibility();
-
-    }; // end ssAnimatedCounters
+        // Helper function to round up time to next allowed minute value (10, 20, 30, 40, 50)
+        const roundUpToAllowedMinutes = function(minutes) {
+            const min = parseInt(minutes);
+            if (min <= 9) return 10;
+            if (min <= 19) return 20;
+            if (min <= 29) return 30;
+            if (min <= 39) return 40;
+            if (min <= 49) return 50;
+            return 10; // 50-59 rounds to 10
+        };
+        
+        // Allowed minute values
+        const allowedMinutes = ['10', '20', '30', '40', '50'];
+        
+        // Set minimum date to today for reservation forms
+        const dateInputs = document.querySelectorAll('input[type="date"][id="cDate"]');
+        if (dateInputs.length) {
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            const todayString = `${year}-${month}-${day}`;
+            
+            dateInputs.forEach(function(input) {
+                input.setAttribute('min', todayString);
+            });
+        }
+        
+        // Validate and sync hour and minute text inputs
+        const hourInputs = document.querySelectorAll('input[type="text"][id="cTimeHour"]');
+        const minuteInputs = document.querySelectorAll('input[type="text"][id="cTimeMinute"]');
+        const hiddenTimeInputs = document.querySelectorAll('input[type="hidden"][id="cTime"]');
+        
+        function syncTimeInput() {
+            hourInputs.forEach(function(hourInput, index) {
+                const minuteInput = minuteInputs[index];
+                const hiddenInput = hiddenTimeInputs[index];
+                
+                if (!hourInput || !minuteInput || !hiddenInput) return;
+                
+                // Validate hour input (only numbers, 8-23)
+                hourInput.addEventListener('input', function() {
+                    // Remove non-numeric characters
+                    this.value = this.value.replace(/[^\d]/g, '');
+                    // Limit to 2 digits
+                    if (this.value.length > 2) {
+                        this.value = this.value.substring(0, 2);
+                    }
+                });
+                
+                hourInput.addEventListener('blur', function() {
+                    const hour = parseInt(this.value);
+                    if (this.value && !isNaN(hour)) {
+                        if (hour < 8) {
+                            this.value = '8';
+                        } else if (hour > 23) {
+                            this.value = '23';
+                        } else {
+                            this.value = String(hour);
+                        }
+                    }
+                    updateHiddenTime();
+                });
+                
+                // Validate minute input (only allowed values: 10, 20, 30, 40, 50)
+                minuteInput.addEventListener('input', function() {
+                    // Remove non-numeric characters
+                    this.value = this.value.replace(/[^\d]/g, '');
+                    // Limit to 2 digits
+                    if (this.value.length > 2) {
+                        this.value = this.value.substring(0, 2);
+                    }
+                });
+                
+                minuteInput.addEventListener('blur', function() {
+                    const minute = this.value;
+                    if (minute && !allowedMinutes.includes(minute)) {
+                        // Try to round to nearest allowed value
+                        const minNum = parseInt(minute);
+                        if (!isNaN(minNum)) {
+                            if (minNum <= 4) {
+                                this.value = '10';
+                            } else if (minNum <= 14) {
+                                this.value = '10';
+                            } else if (minNum <= 24) {
+                                this.value = '20';
+                            } else if (minNum <= 34) {
+                                this.value = '30';
+                            } else if (minNum <= 44) {
+                                this.value = '40';
+                            } else if (minNum <= 54) {
+                                this.value = '50';
+                            } else {
+                                this.value = '10';
+                            }
+                        } else {
+                            this.value = '';
+                        }
+                    }
+                    updateHiddenTime();
+                });
+                
+                function updateHiddenTime() {
+                    const hour = hourInput.value.trim();
+                    const minute = minuteInput.value.trim();
+                    if (hour && minute && allowedMinutes.includes(minute)) {
+                        const hourNum = parseInt(hour);
+                        if (!isNaN(hourNum) && hourNum >= 8 && hourNum <= 23) {
+                            const formattedHour = String(hourNum).padStart(2, '0');
+                            const formattedMinute = String(parseInt(minute)).padStart(2, '0');
+                            hiddenInput.value = formattedHour + ':' + formattedMinute;
+                        } else {
+                            hiddenInput.value = '';
+                        }
+                    } else {
+                        hiddenInput.value = '';
+                    }
+                }
+                
+                hourInput.addEventListener('change', updateHiddenTime);
+                minuteInput.addEventListener('change', updateHiddenTime);
+            });
+        }
+        
+        syncTimeInput();
+        
+        // Validate before form submission
+        const forms = document.querySelectorAll('form[name="reservationForm"]');
+        forms.forEach(function(form) {
+            form.addEventListener('submit', function(e) {
+                const hourInput = form.querySelector('input[id="cTimeHour"]');
+                const minuteInput = form.querySelector('input[id="cTimeMinute"]');
+                
+                if (hourInput && minuteInput) {
+                    const hour = parseInt(hourInput.value);
+                    const minute = minuteInput.value;
+                    
+                    if (isNaN(hour) || hour < 8 || hour > 23) {
+                        e.preventDefault();
+                        alert('Unesite validan broj sati (8-23).');
+                        hourInput.focus();
+                        return false;
+                    }
+                    
+                    if (!minute || !allowedMinutes.includes(minute)) {
+                        e.preventDefault();
+                        alert('Unesite validan broj minuta (10, 20, 30, 40, ili 50).');
+                        minuteInput.focus();
+                        return false;
+                    }
+                }
+            });
+        });
+        
+    }; // end ssReservationForm
 
 
    /* Initialize
@@ -743,12 +809,11 @@
         ssMobileMenu();
         ssScrollSpy();
         ssGLightbox();
-        ssSwiper();
         sstabs();
         ssMailChimpForm();
         ssAlertBoxes();
         ssSmoothScroll();
-        ssAnimatedCounters();
+        ssReservationForm();
 
     })();
 

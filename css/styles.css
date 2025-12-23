@@ -4510,122 +4510,6 @@ td:last-child {
 
 
 /* ===================================================================
- * # TESTIMONIALS
- *
- *
- * ------------------------------------------------------------------- */
-.s-testimonials {
-    padding-top   : var(--vspace-5);
-    padding-bottom: var(--vspace-2_5);
-}
-
-.s-testimonials .testimonials-title {
-    margin-top: 0;
-}
-
-.s-testimonials .swiper-container {
-    padding-bottom: var(--vspace-2);
-}
-
-.s-testimonials .testimonials-slider {
-    margin-top: var(--vspace-2_5);
-}
-
-.testimonials-slider__slide {
-    font-size  : calc(var(--text-size) * 1.1);
-    line-height: calc(1.125 * var(--space));
-    padding-top: var(--vspace-1);
-    border-top : 1px solid var(--color-border);
-    position   : relative;
-}
-
-@media screen and (max-width: 400px) {
-    .testimonials-slider__slide {
-        font-size  : var(--text-base);
-        line-height: var(--vspace-1);
-    }
-}
-
-.testimonials-slider__author {
-    display       : flex;
-    align-items   : center;
-    padding-bottom: var(--vspace-1_5);
-    position      : relative;
-}
-
-.testimonials-slider__avatar {
-    background-color: #000000;
-    width           : var(--vspace-2);
-    height          : var(--vspace-2);
-    padding         : 0;
-    margin-bottom   : 0;
-    margin-right    : var(--vspace-0_5);
-    border-radius   : 100%;
-    outline         : none;
-    display         : flex;
-    align-items     : center;
-    justify-content : center;
-    color           : #ffffff;
-    font-size       : var(--text-lg);
-    font-weight     : 600;
-    flex-shrink     : 0;
-}
-
-.testimonials-slider__cite {
-    display    : block;
-    font-family: var(--type-body);
-    font-weight: 500;
-    font-size  : var(--text-sm);
-    line-height: 1.2;
-    position   : relative;
-}
-
-.testimonials-slider__cite span {
-    display    : block;
-    font-weight: 400;
-    font-size  : 0.9em;
-    line-height: 1.2;
-    color      : var(--color-text-light);
-    margin-top : 0.4rem;
-}
-
-/* ------------------------------------------------------------------- 
- * responsive:
- * testimonials
- * ------------------------------------------------------------------- */
-@media screen and (max-width: 800px) {
-    .testimonials-slider__slide {
-        text-align: center;
-    }
-
-    .testimonials-slider__author {
-        justify-content: center;
-    }
-
-    .testimonials-slider__cite {
-        text-align: left;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .s-testimonials {
-        padding-top   : var(--vspace-4);
-        padding-bottom: var(--vspace-3);
-    }
-
-    .s-testimonials .swiper-container {
-        padding-bottom: var(--vspace-1_5);
-    }
-}
-
-@media screen and (max-width: 400px) {
-    .testimonials-slider__cite {
-        font-size: calc(var(--text-size) * 0.75);
-    }
-}
-
-
-/* ===================================================================
  * # FOOTER
  *
  *
@@ -4997,101 +4881,6 @@ td:last-child {
 
 
 /* ===================================================================
- * ANIMATED COUNTERS SECTION
- * =================================================================== */
-
-.s-counters {
-    padding: var(--vspace-5) 0;
-    background-color: var(--color-bg, #0a0a0a);
-}
-
-.s-counters__content {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.s-counters__item {
-    text-align: center;
-    padding: var(--vspace-2) var(--vspace-1);
-}
-
-.counter-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.counter-item__number {
-    font-size: 6rem;
-    font-weight: 50;
-    line-height: 1;
-    color: var(--color-text-bold, #ffffff);
-    margin-bottom: var(--vspace-1);
-    font-family: var(--type-headings, "Playfair Display", serif);
-    letter-spacing: -0.02em;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    font-stretch: ultra-condensed;
-}
-
-.counter-item__label {
-    font-size: var(--text-sm);
-    color: var(--color-text-light, #5f6362);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: 500;
-}
-
-/* Responsive styles for counters */
-@media screen and (max-width: 1200px) {
-    .counter-item__number {
-        font-size: 5rem;
-    }
-}
-
-@media screen and (max-width: 900px) {
-    .s-counters {
-        padding: var(--vspace-4) 0;
-    }
-    
-    .counter-item__number {
-        font-size: 4.5rem;
-    }
-    
-    .s-counters__item {
-        padding: var(--vspace-1_5) var(--vspace-0_75);
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .counter-item__number {
-        font-size: 3.5rem;
-    }
-    
-    .counter-item__label {
-        font-size: var(--text-xs);
-    }
-    
-    .s-counters__item {
-        padding: var(--vspace-1) var(--vspace-0_5);
-    }
-}
-
-@media screen and (max-width: 400px) {
-    .counter-item__number {
-        font-size: 2.8rem;
-    }
-    
-    .s-counters__content {
-        gap: var(--vspace-1);
-    }
-}
-
-/* ===================================================================
  * FLOATING CALL BUTTON
  * =================================================================== */
 
@@ -5101,7 +4890,7 @@ td:last-child {
     right: 30px;
     width: 60px;
     height: 60px;
-    background-color: #023103;
+    background-color: var(--color-btn);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -5114,7 +4903,7 @@ td:last-child {
 }
 
 .floating-call-button:hover {
-    background-color: #45a049;
+    background-color: var(--color-btn-hover);
     transform: scale(1.1);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
 }
