@@ -6,7 +6,34 @@
     ================================================== -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Royal Garden Restaurant</title>
+    <title>Royal Garden Restaurant - Najbolji Restoran u Obrenovcu | Rezervacije</title>
+    <meta name="description" content="Royal Garden Restaurant je najbolji restoran u Obrenovcu. Autentična kuhinja, elegantan ambijent i vrhunska usluga. Rezervišite svoj sto danas! Radno vreme: 8:00-23:00.">
+    <meta name="keywords" content="restorani u obrenovcu, najbolji restorani u obrenovcu, royal garden restaurant, restoran obrenovac, rezervacije restoran, restoran cara lazara, najbolji restoran obrenovac, restorani obrenovac, hrana obrenovac, večera obrenovac">
+    <meta name="author" content="Royal Garden Restaurant">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.royalgardenrestaurant.rs/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="restaurant">
+    <meta property="og:url" content="https://www.royalgardenrestaurant.rs/">
+    <meta property="og:title" content="Royal Garden Restaurant - Najbolji Restoran u Obrenovcu">
+    <meta property="og:description" content="Autentična kuhinja, elegantan ambijent i vrhunska usluga. Rezervišite svoj sto danas!">
+    <meta property="og:image" content="https://www.royalgardenrestaurant.rs/royalslike/homebackgroundHero.png">
+    <meta property="og:locale" content="sr_RS">
+    <meta property="og:site_name" content="Royal Garden Restaurant">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.royalgardenrestaurant.rs/">
+    <meta property="twitter:title" content="Royal Garden Restaurant - Najbolji Restoran u Obrenovcu">
+    <meta property="twitter:description" content="Autentična kuhinja, elegantan ambijent i vrhunska usluga. Rezervišite svoj sto danas!">
+    <meta property="twitter:image" content="https://www.royalgardenrestaurant.rs/royalslike/homebackgroundHero.png">
+    
+    <!-- Restaurant specific -->
+    <meta name="geo.region" content="RS-00">
+    <meta name="geo.placename" content="Obrenovac">
+    <meta name="geo.position" content="44.6544;20.2003">
+    <meta name="ICBM" content="44.6544, 20.2003">
 
     <script>
         document.documentElement.classList.remove('no-js');
@@ -191,6 +218,34 @@
                 font-size: var(--text-md);
                 margin-bottom: 2rem;
             }
+            
+            .s-reservations__content-main label {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .s-reservations__content-main input[type="text"],
+            .s-reservations__content-main input[type="email"],
+            .s-reservations__content-main input[type="tel"],
+            .s-reservations__content-main input[type="number"],
+            .s-reservations__content-main input[type="date"],
+            .s-reservations__content-main input[type="time"],
+            .s-reservations__content-main select,
+            .s-reservations__content-main textarea {
+                max-width: calc(100% - 2rem);
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            
+            .s-reservations__content-main .row {
+                margin-left: 0;
+                margin-right: 0;
+            }
+            
+            .s-reservations__content-main .column {
+                padding-left: 0;
+                padding-right: 0;
+            }
         }
         
         /* Slider Section */
@@ -228,6 +283,11 @@
             padding-bottom: 4%;
         }
         
+        /* Mobile-only reservation CTA below menu */
+        .menu-reservation-cta-mobile {
+            display: none;
+        }
+        
         .slider-container {
             width: 100vw;
             position: relative;
@@ -242,7 +302,7 @@
         
         .slider-track {
             display: flex;
-            animation: slide 35s infinite linear;
+            animation: carousel-slide 18s infinite cubic-bezier(0.4, 0, 0.2, 1);
             will-change: transform;
             align-items: center;
         }
@@ -271,12 +331,33 @@
             max-height: 220%;
         }
         
-        @keyframes slide {
-            0% {
+        @keyframes carousel-slide {
+            0%, 11% {
                 transform: translateX(0);
             }
-            100% {
-                transform: translateX(-50%);
+            12%, 23% {
+                transform: translateX(-7.14%);
+            }
+            24%, 35% {
+                transform: translateX(-14.28%);
+            }
+            36%, 47% {
+                transform: translateX(-21.42%);
+            }
+            48%, 59% {
+                transform: translateX(-28.56%);
+            }
+            60%, 71% {
+                transform: translateX(-35.7%);
+            }
+            72%, 83% {
+                transform: translateX(-42.84%);
+            }
+            84%, 95% {
+                transform: translateX(-49.98%);
+            }
+            96%, 100% {
+                transform: translateX(-57.12%);
             }
         }
         
@@ -289,26 +370,79 @@
         }
         
         @media screen and (max-width: 768px) {
+            .menu-reservation-cta-mobile {
+                display: block;
+            }
+            
             .s-slider {
                 padding: var(--vspace-3) 0;
                 margin-top: var(--vspace-3);
                 margin-bottom: var(--vspace-1);
             }
             
+            .slider-cta {
+                margin-top: 4rem !important;
+            }
+            
+            .slider-title {
+                margin-bottom: var(--vspace-3);
+                text-align: center;
+                padding-left: 0;
+            }
+            
             .slider-container {
                 padding: 2rem 0;
-                min-height: 300px;
+                min-height: 400px;
+            }
+            
+            .slider-track {
+                animation: carousel-slide-mobile 21s infinite cubic-bezier(0.4, 0, 0.2, 1);
             }
             
             .slider-slide {
                 flex: 0 0 100%;
                 min-width: 100%;
-                padding: 0 1rem;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
             
             .slider-slide img {
-                max-width: 100%;
-                max-height: 100%;
+                width: 100vw;
+                max-width: 100vw;
+                height: auto;
+                min-height: 400px;
+                object-fit: cover;
+                transform: rotate(-90deg);
+                transform-origin: center center;
+            }
+            
+            @keyframes carousel-slide-mobile {
+                0%, 12% {
+                    transform: translateX(0);
+                }
+                14.28%, 26.28% {
+                    transform: translateX(-100%);
+                }
+                28.56%, 40.56% {
+                    transform: translateX(-200%);
+                }
+                42.84%, 54.84% {
+                    transform: translateX(-300%);
+                }
+                57.12%, 69.12% {
+                    transform: translateX(-400%);
+                }
+                71.4%, 83.4% {
+                    transform: translateX(-500%);
+                }
+                85.68%, 97.68% {
+                    transform: translateX(-600%);
+                }
+                100% {
+                    transform: translateX(-700%);
+                }
             }
         }
         
@@ -333,9 +467,39 @@
             z-index: 0;
         }
         
+        .s-intro::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 0.3px;
+            background: linear-gradient(to right, 
+                transparent 0%, 
+                rgba(212, 175, 55, 0.6) 20%, 
+                rgba(255, 215, 0, 0.8) 50%, 
+                rgba(212, 175, 55, 0.6) 80%, 
+                transparent 100%);
+            z-index: 2;
+            border-radius: 0 0 24px 24px;
+        }
+        
         .s-intro__content {
             position: relative;
             z-index: 1;
+        }
+        
+        /* About Section - Bring columns closer together */
+        .s-about__content {
+            gap: calc(var(--gutter) * 0.5);
+        }
+        
+        .s-about__content-start {
+            padding-right: calc(var(--gutter) * 0.5);
+        }
+        
+        .s-about__content-end {
+            padding-left: calc(var(--gutter) * 0.5);
         }
         
        
@@ -394,8 +558,8 @@
                     </ul> <!-- end header-nav__links -->  
                     
                     <div class="header-contact">
-                        <a href="tel:+381652280320" class="header-contact__num btn">
-                            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="24" height="24" color="#000000"><defs><style>.cls-6376396cc3a86d32eae6f0dc-1{fill:none;stroke:currentColor;stroke-miterlimit:10;}</style></defs><path class="cls-6376396cc3a86d32eae6f0dc-1" d="M19.64,21.25c-2.54,2.55-8.38.83-13-3.84S.2,6.9,2.75,4.36L5.53,1.57,10.9,6.94l-2,2A2.18,2.18,0,0,0,8.9,12L12,15.1a2.18,2.18,0,0,0,3.07,0l2-2,5.37,5.37Z"></path></svg>
+                        <a href="tel:+381652280320" class="header-contact__num btn" aria-label="Pozovite Royal Garden Restaurant na broj 065 2280320">
+                            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="24" height="24" color="#000000" aria-hidden="true"><defs><style>.cls-6376396cc3a86d32eae6f0dc-1{fill:none;stroke:currentColor;stroke-miterlimit:10;}</style></defs><path class="cls-6376396cc3a86d32eae6f0dc-1" d="M19.64,21.25c-2.54,2.55-8.38.83-13-3.84S.2,6.9,2.75,4.36L5.53,1.57,10.9,6.94l-2,2A2.18,2.18,0,0,0,8.9,12L12,15.1a2.18,2.18,0,0,0,3.07,0l2-2,5.37,5.37Z"></path></svg>
                             065 2280320
                         </a>
                     </div> <!-- end header-contact -->
@@ -420,9 +584,9 @@
                 </div> <!-- end intro-header -->
 
                 <figure class="intro-pic-primary" style="width: 50%; --pic-primary-width: 50%;">
-                    <img style="opacity: 0.8; transform: rotate(-90deg); transform-origin: center; object-fit: contain; width: 100%; height: auto;" src="royalslike/IMG_3542.jpg" 
-                         srcset="royalslike/IMG_3542.jpg 1x, 
-                         royalslike/IMG_3542.jpg 2x" alt="">  
+                    <img style="opacity: 0.8; object-fit: contain; width: 100%; height: auto;" src="royalslike/restaurantinside.png" 
+                         srcset="royalslike/restaurantinside.png 1x, 
+                         royalslike/restaurantinside.png 2x" alt="">  
                 </figure> <!-- end intro-pic-primary -->    
                     
                 <div class="intro-block-content">
@@ -444,11 +608,11 @@
                 </div> <!-- end intro-block-content -->
 
                 <div class="intro-scroll">
-                    <a class="smoothscroll" href="#about">                            
+                    <a class="smoothscroll" href="#about" aria-label="Skrolujte dole do sekcije O nama">                            
                         <span class="intro-scroll__circle-text"></span>
                         <span class="intro-scroll__text u-screen-reader-text">Skrolujte dole</span>
                         <div class="intro-scroll__icon">
-                            <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m5.214 14.522s4.505 4.502 6.259 6.255c.146.147.338.22.53.22s.384-.073.53-.22c1.754-1.752 6.249-6.244 6.249-6.244.144-.144.216-.334.217-.523 0-.193-.074-.386-.221-.534-.293-.293-.766-.294-1.057-.004l-4.968 4.968v-14.692c0-.414-.336-.75-.75-.75s-.75.336-.75.75v14.692l-4.979-4.978c-.289-.289-.761-.287-1.054.006-.148.148-.222.341-.221.534 0 .189.071.377.215.52z" fill-rule="nonzero"/></svg>
+                            <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="m5.214 14.522s4.505 4.502 6.259 6.255c.146.147.338.22.53.22s.384-.073.53-.22c1.754-1.752 6.249-6.244 6.249-6.244.144-.144.216-.334.217-.523 0-.193-.074-.386-.221-.534-.293-.293-.766-.294-1.057-.004l-4.968 4.968v-14.692c0-.414-.336-.75-.75-.75s-.75.336-.75.75v14.692l-4.979-4.978c-.289-.289-.761-.287-1.054.006-.148.148-.222.341-.221.534 0 .189.071.377.215.52z" fill-rule="nonzero"/></svg>
                         </div>
                     </a>
                 </div> <!-- end intro-scroll -->
@@ -494,7 +658,7 @@
                     </nav> <!-- end tab-nav -->
 
                     <div style="margin-top: 2rem;">
-                        <a style="border-radius: 0;" href="menu.html" class="btn">Pogledaj Ceo Meni</a>
+                        <a style="border-radius: 0;" href="menu.html" class="btn" aria-label="Pogledaj ceo meni Royal Garden Restaurant">Pogledaj Ceo Meni</a>
                     </div>
 
                 </div> <!-- end s-menu__content-start -->
@@ -722,6 +886,11 @@
 
         </section> <!-- end s-menu -->  
 
+        <!-- Mobile-only reservation CTA -->
+        <div class="menu-reservation-cta-mobile" style="text-align: center; margin-top: 2rem; margin-bottom: 2rem;">
+            <a href="tel:+381652280320" class="btn" style="border-radius: 0;" aria-label="Pozovite Royal Garden Restaurant na broj 065 2280320">Pozovite Nas</a>
+        </div>
+
 
         <!-- # slider
         ================================================== -->
@@ -733,51 +902,55 @@
                     <div class="slider-container">
                         <div class="slider-track">
                             <div class="slider-slide">
-                                <img src="royalslike/slider1.jpg" alt="Slider 1">
+                                <img src="royalslike/slider1.jpg" alt="Royal Garden Restaurant - Slider 1" loading="lazy">
                             </div>
                             <div class="slider-slide">
-                                <img src="royalslike/slider2.jpg" alt="Slider 2">
+                                <img src="royalslike/slider2.jpg" alt="Royal Garden Restaurant - Slider 2" loading="lazy">
                             </div>
                             <div class="slider-slide">
-                                <img src="royalslike/slider3.jpg" alt="Slider 3">
+                                <img src="royalslike/slider3.jpg" alt="Royal Garden Restaurant - Slider 3" loading="lazy">
                             </div>
                             <div class="slider-slide">
-                                <img src="royalslike/slider4.jpg" alt="Slider 4">
+                                <img src="royalslike/slider4.jpg" alt="Royal Garden Restaurant - Slider 4" loading="lazy">
                             </div>
                             <div class="slider-slide">
-                                <img src="royalslike/slider5.jpg" alt="Slider 5">
+                                <img src="royalslike/slider5.jpg" alt="Royal Garden Restaurant - Slider 5" loading="lazy">
                             </div>
                             <div class="slider-slide">
-                                <img src="royalslike/slider6.jpg" alt="Slider 6">
+                                <img src="royalslike/slider6.jpg" alt="Royal Garden Restaurant - Slider 6" loading="lazy">
                             </div>
                             <div class="slider-slide">
-                                <img src="royalslike/slider7.jpg" alt="Slider 7">
+                                <img src="royalslike/slider7.jpg" alt="Royal Garden Restaurant - Slider 7" loading="lazy">
                             </div>
                             <!-- Duplicate all 7 images for seamless infinite loop -->
                             <div class="slider-slide">
-                                <img src="royalslike/slider1.jpg" alt="Slider 1">
+                                <img src="royalslike/slider1.jpg" alt="Royal Garden Restaurant - Slider 1" loading="lazy">
                             </div>
                             <div class="slider-slide">
-                                <img src="royalslike/slider2.jpg" alt="Slider 2">
+                                <img src="royalslike/slider2.jpg" alt="Royal Garden Restaurant - Slider 2" loading="lazy">
                             </div>
                             <div class="slider-slide">
-                                <img src="royalslike/slider3.jpg" alt="Slider 3">
+                                <img src="royalslike/slider3.jpg" alt="Royal Garden Restaurant - Slider 3" loading="lazy">
                             </div>
                             <div class="slider-slide">
-                                <img src="royalslike/slider4.jpg" alt="Slider 4">
+                                <img src="royalslike/slider4.jpg" alt="Royal Garden Restaurant - Slider 4" loading="lazy">
                             </div>
                             <div class="slider-slide">
-                                <img src="royalslike/slider5.jpg" alt="Slider 5">
+                                <img src="royalslike/slider5.jpg" alt="Royal Garden Restaurant - Slider 5" loading="lazy">
                             </div>
                             <div class="slider-slide">
-                                <img src="royalslike/slider6.jpg" alt="Slider 6">
+                                <img src="royalslike/slider6.jpg" alt="Royal Garden Restaurant - Slider 6" loading="lazy">
                             </div>
                             <div class="slider-slide">
-                                <img src="royalslike/slider7.jpg" alt="Slider 7">
+                                <img src="royalslike/slider7.jpg" alt="Royal Garden Restaurant - Slider 7" loading="lazy">
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <div class="slider-cta" style="text-align: center; margin-top: 3rem;">
+                <a style="border-radius: 0;" href="reservations.html" class="btn" aria-label="Rezervišite svoj sto u Royal Garden Restaurant">Rezervišite Svoj Sto</a>
             </div>
         </section> <!-- end s-slider -->
 
@@ -803,28 +976,29 @@
                 </div> <!-- end s-about__content-start -->
 
                 <div class="column xl-6 lg-6 md-12 s-about__content-end">                   
-                    <p>
-                    Royal Garden Restaurant je mesto gde se tradicija susreće sa modernim pristupom gastronomiji. 
-                    Naša misija je da pružimo nezaboravno iskustvo svakom gostu kroz pažljivo pripremljene obroke, 
-                    prijatnu atmosferu i vrhunsku uslugu.
-                    </p>
+                    <figure>
+                        <img src="royalslike/IMG_3504.jpg" 
+                             srcset="royalslike/IMG_3504.jpg 1x, 
+                                     royalslike/IMG_3504.jpg 2x" 
+                             alt="Royal Garden Restaurant - Elegantan ambijent" 
+                             loading="lazy">
+                    </figure>
 
                     <p>
                     Sa strastvenim pristupom kulinarstvu, naš tim kuvara koristi samo najkvalitetnije sastojke kako bi 
                     kreirali jela koja će zadovoljiti i najzahtevnije nepce. Svaki obrok je pripremljen sa pažnjom i ljubavlju, 
                     kombinujući tradicionalne recepte sa savremenim tehnikama pripreme.
                     </p>
-
-                    <p>
-                    Naš prostor je dizajniran da pruži opuštenu i elegantnu atmosferu, savršenu za porodične ručkove, 
-                    poslovne sastanke ili romantične večere. Verujemo da dobar obrok može da poveže ljude i stvori 
-                    lepe uspomene koje će trajati zauvek.
-                    </p>
+                    
+                    
 
                     <p>
                     Dođite i doživite razliku. Vaš Royal Garden Restaurant čeka vas da otkrijete svet autentičnih ukusa 
                     i gostoprimstva koje nas čini posebnim.
                     </p>
+                    <div>
+                        <a href="reservations.html" class="btn" style="border-radius: 0;" aria-label="Rezervišite svoj sto u Royal Garden Restaurant">Rezervišite Svoj Sto</a>
+                    </div>
                 </div> <!--end column -->
                 
             </div> <!-- end s-about__content-end -->
@@ -847,66 +1021,82 @@
             <div class="gallery-items grid-cols grid-cols--wrap">
 
                 <div class="gallery-items__item grid-cols__column">
-                    <a href="royalslike/IMG_3385.jpg" class="gallery-items__item-thumb glightbox">
-                        <img src="royalslike/IMG_3385.jpg" 
-                            srcset="royalslike/IMG_3385.jpg 1x, 
-                                    royalslike/IMG_3385.jpg 2x" alt="">                                
+                    <a href="royalslike/gallery/image0.jpeg" class="gallery-items__item-thumb glightbox">
+                        <img src="royalslike/gallery/image0.jpeg" 
+                            srcset="royalslike/gallery/image0.jpeg 1x, 
+                                    royalslike/gallery/image0.jpeg 2x" 
+                            alt="Royal Garden Restaurant Galerija" 
+                            loading="lazy">                                
                     </a>
                 </div> <!-- end gallery-items__item-->
     
                 <div class="gallery-items__item grid-cols__column">
-                    <a href="royalslike/IMG_3407.jpg" class="gallery-items__item-thumb glightbox">
-                        <img src="royalslike/IMG_3530.jpg" 
-                            srcset="royalslike/IMG_3530.jpg 1x, 
-                                    royalslike/IMG_3530.jpg 2x" alt="">
+                    <a href="royalslike/gallery/image1.jpeg" class="gallery-items__item-thumb glightbox">
+                        <img src="royalslike/gallery/image1.jpeg" 
+                            srcset="royalslike/gallery/image1.jpeg 1x, 
+                                    royalslike/gallery/image1.jpeg 2x" 
+                            alt="Royal Garden Restaurant Galerija" 
+                            loading="lazy">
                     </a>
                 </div> <!-- end gallery-items__item -->
     
                 <div class="gallery-items__item grid-cols__column">
-                    <a href="royalslike/IMG_3415.jpg" class="gallery-items__item-thumb glightbox">
-                        <img src="royalslike/IMG_3506.jpg" 
-                            srcset="royalslike/IMG_3506.jpg 1x, 
-                                    royalslike/IMG_3506.jpg 2x" alt="">
+                    <a href="royalslike/gallery/image2.jpeg" class="gallery-items__item-thumb glightbox">
+                        <img src="royalslike/gallery/image2.jpeg" 
+                            srcset="royalslike/gallery/image2.jpeg 1x, 
+                                    royalslike/gallery/image2.jpeg 2x" 
+                            alt="Royal Garden Restaurant Galerija" 
+                            loading="lazy">
                     </a>
                 </div> <!-- end gallery-items__item -->
     
                 <div class="gallery-items__item grid-cols__column">
-                    <a href="royalslike/IMG_3504.jpg" class="gallery-items__item-thumb glightbox">
-                        <img src="royalslike/IMG_3504.jpg" 
-                            srcset="royalslike/IMG_3504.jpg 1x, 
-                                    royalslike/IMG_3504.jpg 2x" alt="">
+                    <a href="royalslike/gallery/image3.jpeg" class="gallery-items__item-thumb glightbox">
+                        <img src="royalslike/gallery/image3.jpeg" 
+                            srcset="royalslike/gallery/image3.jpeg 1x, 
+                                    royalslike/gallery/image3.jpeg 2x" 
+                            alt="Royal Garden Restaurant Galerija" 
+                            loading="lazy">
                     </a>
                 </div> <!-- end gallery-items__item -->
     
                 <div class="gallery-items__item grid-cols__column">
-                    <a href="royalslike/IMG_3425.jpg" class="gallery-items__item-thumb glightbox">
-                        <img src="royalslike/IMG_3425.jpg" 
-                            srcset="royalslike/IMG_3425.jpg 1x, 
-                                    royalslike/IMG_3425.jpg 2x" alt="">
+                    <a href="royalslike/gallery/image4.jpeg" class="gallery-items__item-thumb glightbox">
+                        <img src="royalslike/gallery/image4.jpeg" 
+                            srcset="royalslike/gallery/image4.jpeg 1x, 
+                                    royalslike/gallery/image4.jpeg 2x" 
+                            alt="Royal Garden Restaurant Galerija" 
+                            loading="lazy">
                     </a>
                 </div> <!-- end gallery-items__item -->
     
                 <div class="gallery-items__item grid-cols__column">
-                    <a href="royalslike/IMG_3452.jpg" class="gallery-items__item-thumb glightbox">
-                        <img src="royalslike/IMG_3452.jpg" 
-                            srcset="royalslike/IMG_3452.jpg 1x, 
-                                    royalslike/IMG_3452.jpg 2x" alt="">
+                    <a href="royalslike/gallery/image5.jpeg" class="gallery-items__item-thumb glightbox">
+                        <img src="royalslike/gallery/image5.jpeg" 
+                            srcset="royalslike/gallery/image5.jpeg 1x, 
+                                    royalslike/gallery/image5.jpeg 2x" 
+                            alt="Royal Garden Restaurant Galerija" 
+                            loading="lazy">
                     </a>
                 </div> <!-- end gallery-items__item -->
     
                 <div class="gallery-items__item grid-cols__column">
-                    <a href="royalslike/IMG_3460.jpg" class="gallery-items__item-thumb glightbox">
-                        <img src="royalslike/IMG_3460.jpg" 
-                            srcset="royalslike/IMG_3460.jpg 1x, 
-                                    royalslike/IMG_3460.jpg 2x" alt="">
+                    <a href="royalslike/gallery/image6.jpeg" class="gallery-items__item-thumb glightbox">
+                        <img src="royalslike/gallery/image6.jpeg" 
+                            srcset="royalslike/gallery/image6.jpeg 1x, 
+                                    royalslike/gallery/image6.jpeg 2x" 
+                            alt="Royal Garden Restaurant Galerija" 
+                            loading="lazy">
                     </a>
                 </div> <!-- end gallery-items__item -->
     
                 <div class="gallery-items__item grid-cols__column">
-                    <a href="royalslike/IMG_3469.jpg" class="gallery-items__item-thumb glightbox">
-                        <img src="royalslike/IMG_3469.jpg" 
-                            srcset="royalslike/IMG_3469.jpg 1x, 
-                                    royalslike/IMG_3469.jpg 2x" alt="">
+                    <a href="royalslike/gallery/image7.jpeg" class="gallery-items__item-thumb glightbox">
+                        <img src="royalslike/gallery/image7.jpeg" 
+                            srcset="royalslike/gallery/image7.jpeg 1x, 
+                                    royalslike/gallery/image7.jpeg 2x" 
+                            alt="Royal Garden Restaurant Galerija" 
+                            loading="lazy">
                     </a>
                 </div> <!-- end gallery-items__item -->
                 
@@ -939,6 +1129,8 @@
                     <form name="reservationForm" id="reservationForm" method="POST" action="https://api.web3forms.com/submit" autocomplete="off">
                         <input type="hidden" name="access_key" value="0d0cde6f-a88a-4b27-ac59-5709da72836f">
                         <input type="hidden" name="subject" value="Nova Rezervacija - Royal Garden Restaurant">
+                        <input type="hidden" name="redirect_url" id="redirectUrl" value="">
+                        <input type="hidden" name="from_name" value="Royal Garden Restaurant">
                         <fieldset>
 
                             <div class="row">
@@ -988,7 +1180,7 @@
 
                             <div class="row">
                                 <div class="column xl-12" style="text-align: center; margin-top: 2rem;">
-                                    <input name="submit" type="submit" id="submit" class="btn btn--primary" value="Pošalji Rezervaciju">
+                                    <input name="submit" type="submit" id="submit" class="btn btn--primary" value="Pošalji Rezervaciju" aria-label="Pošalji rezervaciju za Royal Garden Restaurant">
                                 </div>
                             </div>
 
@@ -1043,7 +1235,7 @@
                     <ul class="s-footer__social social-list">
                         <li>
                             <a href="https://www.instagram.com/royalgarden__restaurant" target="_blank" rel="noopener noreferrer">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:"><path d="M11.999,7.377c-2.554,0-4.623,2.07-4.623,4.623c0,2.554,2.069,4.624,4.623,4.624c2.552,0,4.623-2.07,4.623-4.624 C16.622,9.447,14.551,7.377,11.999,7.377L11.999,7.377z M11.999,15.004c-1.659,0-3.004-1.345-3.004-3.003 c0-1.659,1.345-3.003,3.004-3.003s3.002,1.344,3.002,3.003C15.001,13.659,13.658,15.004,11.999,15.004L11.999,15.004z"></path><circle cx="16.806" cy="7.207" r="1.078"></circle><path d="M20.533,6.111c-0.469-1.209-1.424-2.165-2.633-2.632c-0.699-0.263-1.438-0.404-2.186-0.42 c-0.963-0.042-1.268-0.054-3.71-0.054s-2.755,0-3.71,0.054C7.548,3.074,6.809,3.215,6.11,3.479C4.9,3.946,3.945,4.902,3.477,6.111 c-0.263,0.7-0.404,1.438-0.419,2.186c-0.043,0.962-0.056,1.267-0.056,3.71c0,2.442,0,2.753,0.056,3.71 c0.015,0.748,0.156,1.486,0.419,2.187c0.469,1.208,1.424,2.164,2.634,2.632c0.696,0.272,1.435,0.426,2.185,0.45 c0.963,0.042,1.268,0.055,3.71,0.055s2.755,0,3.71-0.055c0.747-0.015,1.486-0.157,2.186-0.419c1.209-0.469,2.164-1.424,2.633-2.633 c0.263-0.7,0.404-1.438,0.419-2.186c0.043-0.962,0.056-1.267,0.056-3.71s0-2.753-0.056-3.71C20.941,7.57,20.801,6.819,20.533,6.111z M19.315,15.643c-0.007,0.576-0.111,1.147-0.311,1.688c-0.305,0.787-0.926,1.409-1.712,1.711c-0.535,0.199-1.099,0.303-1.67,0.311 c-0.95,0.044-1.218,0.055-3.654,0.055c-2.438,0-2.687,0-3.655-0.055c-0.569-0.007-1.135-0.112-1.669-0.311 c-0.789-0.301-1.414-0.923-1.719-1.711c-0.196-0.534-0.302-1.099-0.311-1.669c-0.043-0.95-0.053-1.218-0.053-3.654 c0-2.437,0-2.686,0.053-3.655c0.007-0.576,0.111-1.146,0.311-1.687c0.305-0.789,0.93-1.41,1.719-1.712 c0.534-0.198,1.1-0.303,1.669-0.311c0.951-0.043,1.218-0.055,3.655-0.055c2.437,0,2.687,0,3.654,0.055 c0.571,0.007,1.135,0.112,1.67,0.311c0.786,0.303,1.407,0.925,1.712,1.712c0.196,0.534,0.302,1.099,0.311,1.669 c0.043,0.951,0.054,1.218,0.054,3.655c0,2.436,0,2.698-0.043,3.654H19.315z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);"><path d="M11.999,7.377c-2.554,0-4.623,2.07-4.623,4.623c0,2.554,2.069,4.624,4.623,4.624c2.552,0,4.623-2.07,4.623-4.624 C16.622,9.447,14.551,7.377,11.999,7.377L11.999,7.377z M11.999,15.004c-1.659,0-3.004-1.345-3.004-3.003 c0-1.659,1.345-3.003,3.004-3.003s3.002,1.344,3.002,3.003C15.001,13.659,13.658,15.004,11.999,15.004L11.999,15.004z"></path><circle cx="16.806" cy="7.207" r="1.078"></circle><path d="M20.533,6.111c-0.469-1.209-1.424-2.165-2.633-2.632c-0.699-0.263-1.438-0.404-2.186-0.42 c-0.963-0.042-1.268-0.054-3.71-0.054s-2.755,0-3.71,0.054C7.548,3.074,6.809,3.215,6.11,3.479C4.9,3.946,3.945,4.902,3.477,6.111 c-0.263,0.7-0.404,1.438-0.419,2.186c-0.043,0.962-0.056,1.267-0.056,3.71c0,2.442,0,2.753,0.056,3.71 c0.015,0.748,0.156,1.486,0.419,2.187c0.469,1.208,1.424,2.164,2.634,2.632c0.696,0.272,1.435,0.426,2.185,0.45 c0.963,0.042,1.268,0.055,3.71,0.055s2.755,0,3.71-0.055c0.747-0.015,1.486-0.157,2.186-0.419c1.209-0.469,2.164-1.424,2.633-2.633 c0.263-0.7,0.404-1.438,0.419-2.186c0.043-0.962,0.056-1.267,0.056-3.71s0-2.753-0.056-3.71C20.941,7.57,20.801,6.819,20.533,6.111z M19.315,15.643c-0.007,0.576-0.111,1.147-0.311,1.688c-0.305,0.787-0.926,1.409-1.712,1.711c-0.535,0.199-1.099,0.303-1.67,0.311 c-0.95,0.044-1.218,0.055-3.654,0.055c-2.438,0-2.687,0-3.655-0.055c-0.569-0.007-1.135-0.112-1.669-0.311 c-0.789-0.301-1.414-0.923-1.719-1.711c-0.196-0.534-0.302-1.099-0.311-1.669c-0.043-0.95-0.053-1.218-0.053-3.654 c0-2.437,0-2.686,0.053-3.655c0.007-0.576,0.111-1.146,0.311-1.687c0.305-0.789,0.93-1.41,1.719-1.712 c0.534-0.198,1.1-0.303,1.669-0.311c0.951-0.043,1.218-0.055,3.655-0.055c2.437,0,2.687,0,3.654,0.055 c0.571,0.007,1.135,0.112,1.67,0.311c0.786,0.303,1.407,0.925,1.712,1.712c0.196,0.534,0.302,1.099,0.311,1.669 c0.043,0.951,0.054,1.218,0.054,3.655c0,2.436,0,2.698-0.043,3.654H19.315z"></path></svg>
                                 <span class="u-screen-reader-text">Instagram</span>
                             </a>
                         </li>
@@ -1093,8 +1285,8 @@
             </div> <!-- end s-footer__bottom -->          
 
             <div class="ss-go-top">
-                <a class="smoothscroll" title="Nazad na vrh" href="#top">                 
-                    <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m14.523 18.787s4.501-4.505 6.255-6.26c.146-.146.219-.338.219-.53s-.073-.383-.219-.53c-1.753-1.754-6.255-6.258-6.255-6.258-.144-.145-.334-.217-.524-.217-.193 0-.385.074-.532.221-.293.292-.295.766-.004 1.056l4.978 4.978h-14.692c-.414 0-.75.336-.75.75s.336.75.75.75h14.692l-4.979 4.979c-.289.289-.286.762.006 1.054.148.148.341.222.533.222.19 0 .378-.072.522-.215z" fill-rule="nonzero"/></svg>
+                <a class="smoothscroll" title="Nazad na vrh" href="#top" aria-label="Nazad na vrh stranice">                 
+                    <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="m14.523 18.787s4.501-4.505 6.255-6.26c.146-.146.219-.338.219-.53s-.073-.383-.219-.53c-1.753-1.754-6.255-6.258-6.255-6.258-.144-.145-.334-.217-.524-.217-.193 0-.385.074-.532.221-.293.292-.295.766-.004 1.056l4.978 4.978h-14.692c-.414 0-.75.336-.75.75s.336.75.75.75h14.692l-4.979 4.979c-.289.289-.286.762.006 1.054.148.148.341.222.533.222.19 0 .378-.072.522-.215z" fill-rule="nonzero"/></svg>
                 </a>                                
                 <span>Nazad Na Vrh</span>   
             </div> <!-- end ss-go-top -->
@@ -1105,8 +1297,8 @@
 
 
     <!-- Floating Call Button -->
-    <a href="tel:+381652280320" class="floating-call-button" title="Pozovite nas">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <a href="tel:+381652280320" class="floating-call-button" title="Pozovite nas" aria-label="Pozovite Royal Garden Restaurant na broj 065 2280320">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
         </svg>
     </a>
@@ -1116,6 +1308,59 @@
     ================================================== -->
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
+
+    <!-- JSON-LD Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "Royal Garden Restaurant",
+      "image": "https://www.royalgardenrestaurant.rs/royalslike/homebackgroundHero.png",
+      "description": "Royal Garden Restaurant je najbolji restoran u Obrenovcu. Autentična kuhinja, elegantan ambijent i vrhunska usluga. Rezervišite svoj sto danas!",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "CARA LAZARA 12",
+        "addressLocality": "Obrenovac",
+        "addressCountry": "RS"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 44.6544,
+        "longitude": 20.2003
+      },
+      "url": "https://www.royalgardenrestaurant.rs",
+      "telephone": "+381652280320",
+      "email": "info@royalgardenrestaurant.rs",
+      "priceRange": "$$",
+      "servesCuisine": "Mediteranska, Srpska, Internacionalna",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "08:00",
+          "closes": "23:00"
+        }
+      ],
+      "menu": "https://www.royalgardenrestaurant.rs/menu.html",
+      "acceptsReservations": "True",
+      "sameAs": [
+        "https://www.instagram.com/royalgarden__restaurant"
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "50"
+      }
+    }
+    </script>
 
 </body>
 </html>
