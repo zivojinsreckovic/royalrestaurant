@@ -1508,7 +1508,9 @@ body {
     line-height: var(--type-line-height-body);
     color      : var(--color-text);
 }
-
+body, html {
+    overflow-x: hidden;
+}
 /* links
  */
 a {
@@ -4886,7 +4888,7 @@ td:last-child {
 
 .floating-call-button {
     position: fixed;
-    bottom: 30px;
+    bottom: 60px;
     right: 30px;
     width: 60px;
     height: 60px;
@@ -4923,7 +4925,7 @@ td:last-child {
     .floating-call-button {
         width: 56px;
         height: 56px;
-        bottom: 20px;
+        bottom: 50px;
         right: 20px;
     }
     
@@ -4937,7 +4939,7 @@ td:last-child {
     .floating-call-button {
         width: 50px;
         height: 50px;
-        bottom: 15px;
+        bottom: 40px;
         right: 15px;
     }
     

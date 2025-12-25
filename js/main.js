@@ -769,9 +769,16 @@
         
         syncTimeInput();
         
-        // Validate before form submission
+        // Validate before form submission and set redirect URL
         const forms = document.querySelectorAll('form[name="reservationForm"]');
         forms.forEach(function(form) {
+            // Set absolute redirect URL
+            const redirectInput = form.querySelector('input[name="redirect_url"]');
+            if (redirectInput) {
+                const currentUrl = window.location.origin + window.location.pathname.replace(/[^/]*$/, '');
+                redirectInput.value = currentUrl + 'thank-you.html';
+            }
+            
             form.addEventListener('submit', function(e) {
                 const hourInput = form.querySelector('input[id="cTimeHour"]');
                 const minuteInput = form.querySelector('input[id="cTimeMinute"]');
@@ -794,6 +801,7 @@
                         return false;
                     }
                 }
+                // If validation passes, let the form submit normally so Web3Forms can handle redirect
             });
         });
         
